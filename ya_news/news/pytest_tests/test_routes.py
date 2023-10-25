@@ -50,4 +50,8 @@ def test_pages_availability_for_different_users(
 ):
     url = reverse(page, args=pk_from_comment)
     response = admin_client.get(url)
+<<<<<<< HEAD
     assert response.status_code == HTTPStatus.NOT_FOUND
+=======
+    assert response.status_code == HTTPStatus.NOT_FOUND
+>>>>>>> 2a26fcd51061ee42c1e6bde16130be03ee1749b7

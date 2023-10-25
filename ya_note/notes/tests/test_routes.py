@@ -1,7 +1,15 @@
+<<<<<<< HEAD
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from http import HTTPStatus
+=======
+from http import HTTPStatus
+
+from django.contrib.auth import get_user_model
+from django.test import TestCase
+from django.urls import reverse
+>>>>>>> 2a26fcd51061ee42c1e6bde16130be03ee1749b7
 
 from notes.models import Note
 
@@ -40,6 +48,7 @@ class TestRoutes(TestCase):
             'notes:success',
             'notes:add',
         )
+<<<<<<< HEAD
         for user in (self.author, self.reader):
             with self.subTest(user=user.username):
                 self.client.force_login(user)
@@ -48,6 +57,14 @@ class TestRoutes(TestCase):
                         url = reverse(page)
                         response = self.client.get(url)
                         self.assertEqual(response.status_code, HTTPStatus.OK)
+=======
+        self.client.force_login(self.author)
+        for page in urls:
+            with self.subTest(page=page):
+                url = reverse(page)
+                response = self.client.get(url)
+                self.assertEqual(response.status_code, HTTPStatus.OK)
+>>>>>>> 2a26fcd51061ee42c1e6bde16130be03ee1749b7
 
     def test_availability_for_notes_create_edit_and_delete(self):
         users_statuses = (
@@ -55,6 +72,7 @@ class TestRoutes(TestCase):
             (self.reader, HTTPStatus.NOT_FOUND),
         )
         for user, status in users_statuses:
+<<<<<<< HEAD
             with self.subTest(user=user.username):
                 self.client.force_login(user)
                 for page in ('notes:detail', 'notes:edit', 'notes:delete'):
@@ -62,6 +80,14 @@ class TestRoutes(TestCase):
                         url = reverse(page, args=[self.note.slug])
                         response = self.client.get(url)
                         self.assertEqual(response.status_code, status)
+=======
+            self.client.force_login(user)
+            for page in ('notes:detail', 'notes:edit', 'notes:delete'):
+                with self.subTest(user=user.username, page=page):
+                    url = reverse(page, args=[self.note.slug])
+                    response = self.client.get(url)
+                    self.assertEqual(response.status_code, status)
+>>>>>>> 2a26fcd51061ee42c1e6bde16130be03ee1749b7
 
     def test_redirect_for_anonymous_client(self):
         login_url = reverse('users:login')
