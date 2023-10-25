@@ -2,30 +2,8 @@ from datetime import datetime, timedelta
 
 import pytest
 from django.conf import settings
-<<<<<<< HEAD
-from django.urls import reverse
-from django.utils import timezone
-
-from news.models import Comment, News
-
-
-@pytest.fixture
-def news_delete_url(pk_from_comment):
-    return reverse('news:delete', args=pk_from_comment)
-
-
-@pytest.fixture
-def news_edit_url(comment):
-    return reverse('news:edit', args=[comment.pk])
-
-
-@pytest.fixture
-def news_detail_url(pk_from_news):
-    return reverse('news:detail', args=pk_from_news)
-=======
 from django.utils import timezone
 from news.models import News, Comment
->>>>>>> 2a26fcd51061ee42c1e6bde16130be03ee1749b7
 
 
 @pytest.fixture
